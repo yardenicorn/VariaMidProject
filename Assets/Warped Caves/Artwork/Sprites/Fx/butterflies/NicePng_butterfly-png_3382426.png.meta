@@ -1,0 +1,1015 @@
+fileFormatVersion: 2
+guid: 07825fe65d7ca7441954471c76113206
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 300
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a06fa1217ead03e4599186dd4285fb37
+      internalID: -606073216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_1
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 301
+        width: 46
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa760f6e3e782ca45ab2790f821d4e05
+      internalID: -508082592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_2
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 301
+        width: 49
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9994e121c31848545b98a004cfabfec3
+      internalID: -451437268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_3
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 302
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313ffb5cfc0e01c43889a8d53db00f37
+      internalID: -490654900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_4
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 302
+        width: 62
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c0c25ca8bc74874fa9178753dcaf3d5
+      internalID: 1735247106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_5
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 302
+        width: 65
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea6386368bba9d4695a0a1ce29acfab
+      internalID: -1444045958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_6
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 302
+        width: 62
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce75169796cf3049a534147c0ae6590
+      internalID: 267453018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_7
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 302
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b5c869bb9e76a49b3cf5dfca852008
+      internalID: -1648770075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_8
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 301
+        width: 49
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa099dca49f02f478ad122ae219f2e1
+      internalID: 914325527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_9
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 301
+        width: 46
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 927d374fa5600b94098f0cf3d2ed3998
+      internalID: 1335392986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 200
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8a9d5f94c779b4bb7b5da2ed73d036
+      internalID: 2053177551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_11
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 200
+        width: 43
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d93596ac142354cba57434b8f77507
+      internalID: -1986060514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_12
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 201
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08340293c4a45744f8e63963635cc308
+      internalID: 593742081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_13
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 201
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86cacff849adc0447ad4266264d17239
+      internalID: -936956471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_14
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 202
+        width: 66
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75ef8732449bfc42961f6c7582a0253
+      internalID: 21728011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_15
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 202
+        width: 69
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c721a679f1c609d418c801c4bd9f5892
+      internalID: -477260699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_16
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 202
+        width: 66
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 538465aa4280fa24fa2b05e290fa5a46
+      internalID: 1557788463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_17
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 201
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ceef2ed3c65089479bee56ed3cb1db3
+      internalID: -461607919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_18
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 201
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ed25b002ebdcb478380a4ed38c92d1
+      internalID: 386768109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_19
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 200
+        width: 43
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be709c56bcfbe184fb415d65c594b81a
+      internalID: -2142023885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 100
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f30396d66ebe3d0478352222767f6ec6
+      internalID: 1532593209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_21
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 100
+        width: 42
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d9fa38bc6f02cd4bbb2b5c2d7b493f0
+      internalID: -2135030528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_22
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 101
+        width: 44
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c601a60a82902145a471e0aafb03a66
+      internalID: -1809133247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_23
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 101
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487912af8184d8d48a70b227cc9ac9c7
+      internalID: -1032406840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_24
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 102
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b90d0771f3d6c94a8159f5691112924
+      internalID: 1324910081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_25
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 102
+        width: 68
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a12b83e033129334d9de510b73df20b8
+      internalID: 1703684359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_26
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 102
+        width: 67
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929d8785706ca9d4cbc083f2f6e4016e
+      internalID: -420072015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_27
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 101
+        width: 58
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ec722ae20774c479895fd5fce9f5b8
+      internalID: 423192426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_28
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 101
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72ef24ecfc8c64a4e84b3e323661ae93
+      internalID: -1729337663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_29
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 100
+        width: 45
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83b90deaeb0bdac48b5ac0c99a628e67
+      internalID: 752204855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_30
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 389fa09636df78b468a2389bf650b0e2
+      internalID: 1232980517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_31
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 0
+        width: 45
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58c61dcd9759504f86e727c73e45320
+      internalID: -440503022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_32
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1e6cf704e38b44a88d800e36a23a06
+      internalID: 531312411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_33
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 1
+        width: 58
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0114142bc4758b41ad25ecf9789fc25
+      internalID: -1725726021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_34
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 2
+        width: 67
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3316b946112954c40b9c4db9b60f411c
+      internalID: -605694067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_35
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 2
+        width: 68
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a7629059d98d7d4687e5df3e202080c
+      internalID: 1167700968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_36
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 2
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06db30bbde6a9f141a83c2fae17d3530
+      internalID: 1972594422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_37
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 1
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2c2ff6080b3ba4d8ccb6cbf4ec3e37
+      internalID: -1587412934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_38
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 1
+        width: 44
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dad3c21da4b3ac64b9a550bf08e4b7fb
+      internalID: -1143200884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NicePng_butterfly-png_3382426_39
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 42
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0ccd70f76471f34b92c47060aef5422
+      internalID: 852540114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      NicePng_butterfly-png_3382426_33: -1725726021
+      NicePng_butterfly-png_3382426_35: 1167700968
+      NicePng_butterfly-png_3382426_11: -1986060514
+      NicePng_butterfly-png_3382426_1: -508082592
+      NicePng_butterfly-png_3382426_7: -1648770075
+      NicePng_butterfly-png_3382426_4: 1735247106
+      NicePng_butterfly-png_3382426_13: -936956471
+      NicePng_butterfly-png_3382426_32: 531312411
+      NicePng_butterfly-png_3382426_19: -2142023885
+      NicePng_butterfly-png_3382426_26: -420072015
+      NicePng_butterfly-png_3382426_25: 1703684359
+      NicePng_butterfly-png_3382426_39: 852540114
+      NicePng_butterfly-png_3382426_0: -606073216
+      NicePng_butterfly-png_3382426_27: 423192426
+      NicePng_butterfly-png_3382426_30: 1232980517
+      NicePng_butterfly-png_3382426_6: 267453018
+      NicePng_butterfly-png_3382426_31: -440503022
+      NicePng_butterfly-png_3382426_38: -1143200884
+      NicePng_butterfly-png_3382426_37: -1587412934
+      NicePng_butterfly-png_3382426_34: -605694067
+      NicePng_butterfly-png_3382426_5: -1444045958
+      NicePng_butterfly-png_3382426_36: 1972594422
+      NicePng_butterfly-png_3382426_20: 1532593209
+      NicePng_butterfly-png_3382426_29: 752204855
+      NicePng_butterfly-png_3382426_18: 386768109
+      NicePng_butterfly-png_3382426_24: 1324910081
+      NicePng_butterfly-png_3382426_9: 1335392986
+      NicePng_butterfly-png_3382426_21: -2135030528
+      NicePng_butterfly-png_3382426_12: 593742081
+      NicePng_butterfly-png_3382426_22: -1809133247
+      NicePng_butterfly-png_3382426_28: -1729337663
+      NicePng_butterfly-png_3382426_10: 2053177551
+      NicePng_butterfly-png_3382426_14: 21728011
+      NicePng_butterfly-png_3382426_8: 914325527
+      NicePng_butterfly-png_3382426_3: -490654900
+      NicePng_butterfly-png_3382426_16: 1557788463
+      NicePng_butterfly-png_3382426_2: -451437268
+      NicePng_butterfly-png_3382426_17: -461607919
+      NicePng_butterfly-png_3382426_23: -1032406840
+      NicePng_butterfly-png_3382426_15: -477260699
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
