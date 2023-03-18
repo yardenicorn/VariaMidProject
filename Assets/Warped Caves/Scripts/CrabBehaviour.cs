@@ -21,12 +21,11 @@ public class CrabBehaviour : MonoBehaviour
         enemyDeathInstance.SetActive(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
-            Invoke("RespawnEnemy", respawnTime);
         }
     }
 

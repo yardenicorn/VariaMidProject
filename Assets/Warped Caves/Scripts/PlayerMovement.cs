@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float JumpForce = 14f;
     [SerializeField] private LayerMask jumpableGround;
 
-    private enum MovementState { idle, run, jump, shot, duck }
+    private enum MovementState { idle, run, jump, shot, duck, hurt }
 
     // Start is called before the first frame update
     private void Start()
