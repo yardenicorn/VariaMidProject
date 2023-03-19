@@ -5,28 +5,18 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public int maxHealth = 3;
+    public const int maxHealth = 3;
     public int currentHealth;
     public GameObject gameoverTextObject;
-    private Animator anim;
 
     public Image[] hearts;
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            TakeDamage();
-        }
-    }
-
-    private void TakeDamage()
+    public void TakeDamage()
     {
         currentHealth--;
 
@@ -35,10 +25,6 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
-        }
-        else
-        {
-            anim.SetTrigger("Hurt");
         }
     }
 

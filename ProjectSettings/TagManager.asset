@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Unicorn
   - Orb
+  - Ground
   layers:
   - Default
   - TransparentFX

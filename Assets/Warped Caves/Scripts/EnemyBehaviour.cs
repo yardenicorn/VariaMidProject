@@ -7,7 +7,7 @@ public class CrabBehaviour : MonoBehaviour
     public GameObject EnemyDeathPrefab;
     private GameObject enemyDeathInstance;
     public GameObject EnemyPrefab;
-    private float respawnTime = 3f;
+    // private float respawnTime = 3f;
 
     private void Start()
     {
@@ -21,9 +21,9 @@ public class CrabBehaviour : MonoBehaviour
         enemyDeathInstance.SetActive(true);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
         }
