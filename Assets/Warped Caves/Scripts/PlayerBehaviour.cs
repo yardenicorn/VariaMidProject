@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private bool facingRight = true;
     private bool isGrounded = true;
+    private bool IgnoreInput = false;
     private float dirX = 0f;
     private float duckingOffset = 0.52f;
     public float hurtForce = 500f;
@@ -43,9 +44,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (IgnoreInput)
+        {
+            return;
+        }
+
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-
+        
         if (Input.GetKeyDown("up") && isGrounded)
         {
             rb.velocity = Vector2.up * jumpForce;
@@ -122,8 +128,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            health.TakeDamage();
+            // health.TakeDamage();
             anim.SetTrigger("Hurt");
+            StartCoroutine(InputDisable());
             Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized + Vector2.up;
             rb.AddForce(direction * hurtForce, ForceMode2D.Impulse);
             Debug.Log("Direction: " + direction);
@@ -143,7 +150,13 @@ public class PlayerBehaviour : MonoBehaviour
             isGrounded = false;
         }
     }
-    
+
+    IEnumerator InputDisable()
+    {
+        IgnoreInput = true;
+        yield return new WaitForSeconds(0.5f);
+        IgnoreInput = false;
+    }
     private void onPlayerDeath()
     {
         Debug.Log("onplayerdeathfunction");
