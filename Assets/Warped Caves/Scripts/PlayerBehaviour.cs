@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -16,14 +18,14 @@ public class PlayerBehaviour : MonoBehaviour
     private bool isGrounded = true;
     private float dirX = 0f;
     private float duckingOffset = 0.52f;
-    private float hurtForce = 20f;
+    public float hurtForce = 500f;
 
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
 
     private enum AnimationState { idle, run, jump, shot, duck, hurt, dead }
     private AnimationState state;
-
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,6 +34,7 @@ public class PlayerBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
         FirePoint = transform.Find("Fire Point");
+        health.onDeath.AddListener(onPlayerDeath);
     }
     void Shoot()
     {
@@ -119,10 +122,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            // health.TakeDamage();
+            health.TakeDamage();
             anim.SetTrigger("Hurt");
-            Vector2 direction = (transform.position - collision.transform.position).normalized;
-            rb.velocity = direction * hurtForce;
+            Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized + Vector2.up;
+            rb.AddForce(direction * hurtForce, ForceMode2D.Impulse);
+            Debug.Log("Direction: " + direction);
+            Debug.Log("Player position: " + transform.position);
+            Debug.Log("Collision position: " + collision.transform.position);
+            Debug.Log("Distance: " + Vector2.Distance(transform.position, collision.transform.position));
         }
         else if (collision.gameObject.tag == "Ground")
         {
@@ -136,4 +143,46 @@ public class PlayerBehaviour : MonoBehaviour
             isGrounded = false;
         }
     }
+    
+    private void onPlayerDeath()
+    {
+        Debug.Log("onplayerdeathfunction");
+        anim.SetTrigger("Dead");
+    }
 }
+
+/*
+public class Varia : MonoBehaviour
+{
+    float moveSpeed;
+    Rigidbody2D rb;
+    private bool IgnoreInput = false;
+
+    void Update()
+    {
+        if (!IgnoreInput)
+        {
+            float input = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // do the "Getting thrown" stuff
+            StartCoroutine(InputDisable());
+        }
+    }
+
+    IEnumerator InputDisable()
+    {
+        IgnoreInput = true;
+        yield return new WaitForSeconds(0.5f);
+        IgnoreInput = false;
+    }
+
+}
+}
+*/

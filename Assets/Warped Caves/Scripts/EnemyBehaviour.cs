@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrabBehaviour : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
     public GameObject EnemyDeathPrefab;
     private GameObject enemyDeathInstance;
