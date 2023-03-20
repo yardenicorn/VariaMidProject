@@ -17,10 +17,10 @@ public class PlayerMovement : MonoBehaviour
     private int jumpingCount = 0;
 
     [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float JumpForce = 14f;
+    [SerializeField] private float JumpForce = 16f;
     [SerializeField] private LayerMask Ground;
 
-    private enum MovementState { idle, run, jump, shot, duck }
+    private enum MovementState { idle, run, jump, shot, duck, fall }
 
     private void Start()
     {
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         bool isGrounded = Physics2D.Linecast(transform.position,transform.position + Vector3.down, LayerMask.GetMask("Ground"));
+
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
@@ -88,9 +89,15 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.idle;
         }
 
-        if (Mathf.Abs(rb.velocity.y) > 1.5f)
+        if (rb.velocity.y > 3.5f)
         {
+            Debug.Log(rb.velocity.y);
             state = MovementState.jump;
+        }
+        else if (rb.velocity.y < -0.1f)
+        {
+            Debug.Log(rb.velocity.y);
+            state = MovementState.fall;
         }
 
         if (Input.GetKeyDown("space"))
