@@ -15,11 +15,11 @@ public class CrabBehaviour : MonoBehaviour
         enemyDeathInstance.SetActive(false);
     }
 
-    private void OnDisable()
-    {
-        // Spawn Death Particles
-        enemyDeathInstance.SetActive(true);
-    }
+    //private void OnDisable()
+    //{
+    //    // Spawn Death Particles
+    //    enemyDeathInstance.SetActive(true);
+    //}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
