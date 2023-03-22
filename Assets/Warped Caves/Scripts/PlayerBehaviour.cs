@@ -52,7 +52,7 @@ public class PlayerBehaviour : MonoBehaviour
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
         
-        if (Input.GetKeyDown("up") && isGrounded)
+        if (Input.GetKeyDown("up"))
         {
             rb.velocity = Vector2.up * jumpForce;
         }
@@ -91,12 +91,10 @@ public class PlayerBehaviour : MonoBehaviour
             state = AnimationState.idle;
         }
 
-        // jumping
-        // if (rb.velocity.y > 0 || rb.velocity.y < 0)
-        // {
-        //     Debug.Log($" Jumping: {rb.velocity.y}");
-        //     state = AnimationState.jump;
-        // }
+        if (rb.velocity.y > 1)
+        {
+            state = AnimationState.jump;
+        }
 
         if (Input.GetKeyDown("space"))
         {
@@ -118,7 +116,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void FlipFirePoint()
     {
         facingRight = !facingRight;
-
         float rotation = FirePoint.rotation.eulerAngles.z;
         rotation = facingRight ? 0f : 180f;
         FirePoint.rotation = Quaternion.Euler(0, 0, rotation);
@@ -128,15 +125,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            // health.TakeDamage();
+            health.TakeDamage();
             anim.SetTrigger("Hurt");
             StartCoroutine(InputDisable());
             Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized + Vector2.up;
             rb.AddForce(direction * hurtForce, ForceMode2D.Impulse);
-            Debug.Log("Direction: " + direction);
-            Debug.Log("Player position: " + transform.position);
-            Debug.Log("Collision position: " + collision.transform.position);
-            Debug.Log("Distance: " + Vector2.Distance(transform.position, collision.transform.position));
         }
         else if (collision.gameObject.tag == "Ground")
         {
@@ -163,39 +156,3 @@ public class PlayerBehaviour : MonoBehaviour
         anim.SetTrigger("Dead");
     }
 }
-
-/*
-public class Varia : MonoBehaviour
-{
-    float moveSpeed;
-    Rigidbody2D rb;
-    private bool IgnoreInput = false;
-
-    void Update()
-    {
-        if (!IgnoreInput)
-        {
-            float input = Input.GetAxis("Horizontal");
-            rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            // do the "Getting thrown" stuff
-            StartCoroutine(InputDisable());
-        }
-    }
-
-    IEnumerator InputDisable()
-    {
-        IgnoreInput = true;
-        yield return new WaitForSeconds(0.5f);
-        IgnoreInput = false;
-    }
-
-}
-}
-*/
