@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnicornBehaviour : MonoBehaviour
 {
     public Transform target;
-    private float speed = 5f;
+    private float speed = 6f;
     private bool isFollowing = false;
 
     private void Update()
