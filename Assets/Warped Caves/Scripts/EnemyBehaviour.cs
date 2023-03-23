@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public GameObject EnemyDeathPrefab;
-    private GameObject enemyDeathInstance;
-    public GameObject EnemyPrefab;
+    public GameObject enemyDeathPrefab;
+    public GameObject enemyPrefab;
+    private GameObject _enemyDeathInstance;
     // private float respawnTime = 3f;
 
     private void Start()
     {
-        enemyDeathInstance = Instantiate(EnemyDeathPrefab, transform.position, Quaternion.identity);
-        enemyDeathInstance.SetActive(false);
+        _enemyDeathInstance = Instantiate(enemyDeathPrefab, transform.position, Quaternion.identity);
+        _enemyDeathInstance.SetActive(false);
     }
 
-    //private void OnDisable()
-    //{
-    //    // Spawn Death Particles
-    //    enemyDeathInstance.SetActive(true);
-    //}
+    private void OnDisable()
+    {
+        // Spawn Death Particles
+        _enemyDeathInstance.SetActive(true);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -29,9 +29,11 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    /*
     private void RespawnEnemy()
     {
         Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
     }
+    */
 
 }

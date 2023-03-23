@@ -6,55 +6,54 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private SpriteRenderer sprite;
-    private Animator anim;
-    private Transform firePoint;
-    public GameObject bullet;
+    private Rigidbody2D _rb;
+    private SpriteRenderer _sprite;
+    private Animator _anim;
+    private Transform _firePoint;
+    public GameObject bulletPrefab;
     public GameObject gate;
     public Collider2D gateColl;
-    private HealthSystem health;
+    private HealthSystem _health;
 
-    private bool facingRight = true;
-    private bool isGrounded = true;
-    private bool IgnoreInput = false;
-    private float dirX = 0f;
-    private float duckingOffset = 0.52f;
-    public float hurtForce = 500f;
+    private bool _facingRight = true;
+    private bool _isGrounded = true;
+    private bool _ignoreInput = false;
+    private float _dirX;
+    private float _hurtForce = 70f;
 
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
 
-    private enum AnimationState { idle, run, jump, shot, duck, hurt, dead }
+    private enum AnimationState { idle, run, jump, shoot, runshoot }
     private AnimationState state;
     
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-        health = GetComponent<HealthSystem>();
-        firePoint = transform.Find("Fire Point");
-        health.onDeath.AddListener(onPlayerDeath);
+        _rb = GetComponent<Rigidbody2D>();
+        _sprite = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
+        _health = GetComponent<HealthSystem>();
+        _firePoint = transform.Find("Fire Point");
+        _health.onDeath.AddListener(onPlayerDeath);
     }
     void Shoot()
     {
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        Instantiate(bulletPrefab, _firePoint.position, _firePoint.rotation);
     }
 
     private void Update()
     {
-        if (IgnoreInput)
+        if (_ignoreInput)
         {
             return;
         }
 
-        dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-        
+        _dirX = Input.GetAxisRaw("Horizontal");
+        _rb.velocity = new Vector2(_dirX * moveSpeed, _rb.velocity.y);
+
         if (Input.GetKeyDown("up"))
         {
-            rb.velocity = Vector2.up * jumpForce;
+            _rb.velocity = Vector2.up * jumpForce;
         }
 
         if (Input.GetKeyDown("space"))
@@ -68,20 +67,20 @@ public class PlayerBehaviour : MonoBehaviour
     private void UpdateAnimationState()
     {
 
-        if (dirX > 0f)
+        if (_dirX > 0f)
         {
             state = AnimationState.run;
-            sprite.flipX = false;
-            if (!facingRight)
+            _sprite.flipX = false;
+            if (!_facingRight)
             {
                 FlipFirePoint();
             }
         }
-        else if (dirX < 0f)
+        else if (_dirX < 0f)
         {
             state = AnimationState.run;
-            sprite.flipX = true;
-            if (facingRight)
+            _sprite.flipX = true;
+            if (_facingRight)
             {
                 FlipFirePoint();
             }
@@ -91,69 +90,65 @@ public class PlayerBehaviour : MonoBehaviour
             state = AnimationState.idle;
         }
 
-        if (rb.velocity.y > 1)
+        if (_rb.velocity.y > 1f)
         {
             state = AnimationState.jump;
         }
 
         if (Input.GetKeyDown("space"))
         {
-            state = AnimationState.shot;
+            if (_dirX != 0f)
+            {
+                state = AnimationState.runshoot;
+            }
+            else
+            {
+                state = AnimationState.shoot;
+
+            }
         }
 
-        if (Input.GetKey("down"))
-        {
-            state = AnimationState.duck;
-            Vector3 newFirePointPosition = firePoint.position;
-            newFirePointPosition.y -= duckingOffset;
-            firePoint.position = newFirePointPosition;
-        }
-
-        anim.SetInteger("state", (int)state);
+        _anim.SetInteger("state", (int)state);
     }
 
     // function that makes the shot go right when the player faces right and go left when the player faces left
     private void FlipFirePoint()
     {
-        facingRight = !facingRight;
-        float rotation = firePoint.rotation.eulerAngles.z;
-        rotation = facingRight ? 0f : 180f;
-        firePoint.rotation = Quaternion.Euler(0, 0, rotation);
+        _facingRight = !_facingRight;
+        float rotation = _firePoint.rotation.eulerAngles.z;
+        rotation = _facingRight ? 0f : 180f;
+        _firePoint.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            health.TakeDamage();
-            anim.SetTrigger("Hurt");
+            _health.TakeDamage();
+            _anim.SetTrigger("Hurt");
             StartCoroutine(InputDisable());
-            Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized + Vector2.up;
-            rb.AddForce(direction * hurtForce, ForceMode2D.Impulse);
+            Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized;
+            _rb.AddForce(direction * _hurtForce, ForceMode2D.Impulse);
         }
         else if (collision.gameObject.tag == "Ground")
         {
-            isGrounded = true;
+            _isGrounded = true;
         }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
+        else
         {
-            isGrounded = false;
+            _isGrounded = false;
         }
     }
 
     IEnumerator InputDisable()
     {
-        IgnoreInput = true;
-        yield return new WaitForSeconds(0.5f);
-        IgnoreInput = false;
+        _ignoreInput = true;
+        yield return new WaitForSeconds(1f);
+        _ignoreInput = false;
     }
     private void onPlayerDeath()
     {
-        Debug.Log("onplayerdeathfunction");
-        anim.SetTrigger("Dead");
+        _anim.SetTrigger("Dead");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

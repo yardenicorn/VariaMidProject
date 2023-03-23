@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f;
-    public Rigidbody2D rb;
+    private float _speed = 10f;
+    private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right * _speed;
         GameObject.Destroy(gameObject, 1);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Gate"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
