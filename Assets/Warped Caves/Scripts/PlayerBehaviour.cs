@@ -7,11 +7,12 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private CapsuleCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
-    private Transform FirePoint;
+    private Transform firePoint;
     public GameObject bullet;
+    public GameObject gate;
+    public Collider2D gateColl;
     private HealthSystem health;
 
     private bool facingRight = true;
@@ -30,16 +31,15 @@ public class PlayerBehaviour : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<CapsuleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
-        FirePoint = transform.Find("Fire Point");
+        firePoint = transform.Find("Fire Point");
         health.onDeath.AddListener(onPlayerDeath);
     }
     void Shoot()
     {
-        Instantiate(bullet, FirePoint.position, FirePoint.rotation);
+        Instantiate(bullet, firePoint.position, firePoint.rotation);
     }
 
     private void Update()
@@ -104,9 +104,9 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKey("down"))
         {
             state = AnimationState.duck;
-            Vector3 newFirePointPosition = FirePoint.position;
+            Vector3 newFirePointPosition = firePoint.position;
             newFirePointPosition.y -= duckingOffset;
-            FirePoint.position = newFirePointPosition;
+            firePoint.position = newFirePointPosition;
         }
 
         anim.SetInteger("state", (int)state);
@@ -116,9 +116,9 @@ public class PlayerBehaviour : MonoBehaviour
     private void FlipFirePoint()
     {
         facingRight = !facingRight;
-        float rotation = FirePoint.rotation.eulerAngles.z;
+        float rotation = firePoint.rotation.eulerAngles.z;
         rotation = facingRight ? 0f : 180f;
-        FirePoint.rotation = Quaternion.Euler(0, 0, rotation);
+        firePoint.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -154,5 +154,17 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Debug.Log("onplayerdeathfunction");
         anim.SetTrigger("Dead");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Collider2D gateColl = gate.GetComponent<Collider2D>();
+        Animator GateAnimator = gate.GetComponent<Animator>();
+        if (collision.gameObject.CompareTag("Key"))
+        {
+            Destroy(collision.gameObject);
+            GateAnimator.SetTrigger("Open");
+            gateColl.enabled = false;
+        }
     }
 }

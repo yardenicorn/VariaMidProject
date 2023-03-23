@@ -8,8 +8,9 @@ TagManager:
   - Bullet
   - Enemy
   - Unicorn
-  - Orb
   - Ground
+  - Key
+  - GardenStay
   layers:
   - Default
   - TransparentFX
