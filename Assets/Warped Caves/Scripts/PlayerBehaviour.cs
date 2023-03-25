@@ -18,11 +18,25 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _facingRight = true;
     private bool _isGrounded = true;
     private bool _ignoreInput = false;
+    private bool _isShooting = false;
+    [SerializeField] private float shootAnimDuration = 1f;
+    private float currentShootTimer = 0f;
     private float _dirX;
     private float _hurtForce = 70f;
 
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
+    [Header("Ground Check")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform playerFeet;
+    [SerializeField] private float feetRadius = 0.25f;
+    [SerializeField] private int maxJumps = 2;
+    private int jumpCounter = 0;
+    [SerializeField] private PhysicsMaterial2D noFrictionMat;
+    [SerializeField] private PhysicsMaterial2D frictionMat;
+
+
 
     private enum AnimationState { idle, run, jump, shoot, runshoot }
     private AnimationState state;
@@ -50,10 +64,20 @@ public class PlayerBehaviour : MonoBehaviour
 
         _dirX = Input.GetAxisRaw("Horizontal");
         _rb.velocity = new Vector2(_dirX * moveSpeed, _rb.velocity.y);
+        if (_rb.velocity.x != 0)
+        {
+            _rb.sharedMaterial = noFrictionMat;
+        }
+        else
+        {
+            _rb.sharedMaterial = frictionMat;
+        }
+            
 
-        if (Input.GetKeyDown("up"))
+        if (Input.GetKeyDown("up") && jumpCounter < maxJumps)
         {
             _rb.velocity = Vector2.up * jumpForce;
+            jumpCounter++;
         }
 
         if (Input.GetKeyDown("space"))
@@ -61,12 +85,19 @@ public class PlayerBehaviour : MonoBehaviour
             Shoot();
         }
 
+        currentShootTimer += Time.deltaTime;
+        if (currentShootTimer > shootAnimDuration)
+        {
+            _isShooting = false;
+        }
+        GroundCheck();
         UpdateAnimationState();
     }
 
     private void UpdateAnimationState()
     {
-
+        _anim.SetFloat("speed", Mathf.Abs(_rb.velocity.x));
+        _anim.SetBool("isGrounded", _isGrounded);
         if (_dirX > 0f)
         {
             state = AnimationState.run;
@@ -90,13 +121,16 @@ public class PlayerBehaviour : MonoBehaviour
             state = AnimationState.idle;
         }
 
-        if (_rb.velocity.y > 1f)
+        if (_isGrounded)
         {
             state = AnimationState.jump;
         }
 
+
         if (Input.GetKeyDown("space"))
         {
+            _isShooting = true;
+            currentShootTimer = 0f;
             if (_dirX != 0f)
             {
                 state = AnimationState.runshoot;
@@ -104,10 +138,9 @@ public class PlayerBehaviour : MonoBehaviour
             else
             {
                 state = AnimationState.shoot;
-
             }
         }
-
+        _anim.SetBool("isShooting", _isShooting);
         _anim.SetInteger("state", (int)state);
     }
 
@@ -118,6 +151,9 @@ public class PlayerBehaviour : MonoBehaviour
         float rotation = _firePoint.rotation.eulerAngles.z;
         rotation = _facingRight ? 0f : 180f;
         _firePoint.rotation = Quaternion.Euler(0, 0, rotation);
+        Vector3 tempPos = _firePoint.localPosition;
+        tempPos.x = -tempPos.x;
+        _firePoint.localPosition = tempPos;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -129,14 +165,6 @@ public class PlayerBehaviour : MonoBehaviour
             StartCoroutine(InputDisable());
             Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized;
             _rb.AddForce(direction * _hurtForce, ForceMode2D.Impulse);
-        }
-        else if (collision.gameObject.tag == "Ground")
-        {
-            _isGrounded = true;
-        }
-        else
-        {
-            _isGrounded = false;
         }
     }
 
@@ -160,6 +188,16 @@ public class PlayerBehaviour : MonoBehaviour
             Destroy(collision.gameObject);
             GateAnimator.SetTrigger("Open");
             gateColl.enabled = false;
+        }
+    }
+
+    private void GroundCheck()
+    {
+        bool lastGroundState = _isGrounded;
+        _isGrounded = Physics2D.OverlapCircle(playerFeet.position, feetRadius, groundLayer);
+        if (lastGroundState == false && _isGrounded == true)
+        {
+            jumpCounter = 0;
         }
     }
 }

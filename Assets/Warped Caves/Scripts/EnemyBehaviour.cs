@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnDisable()
     {
         // Spawn Death Particles
-        _enemyDeathInstance.SetActive(true);
+        // _enemyDeathInstance.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
