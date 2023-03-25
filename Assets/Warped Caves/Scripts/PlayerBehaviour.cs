@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     private SpriteRenderer _sprite;
     private Animator _anim;
     private Transform _firePoint;
+    private Transform _unicornFollowPoint;
     public GameObject bulletPrefab;
     public GameObject gate;
     public Collider2D gateColl;
@@ -22,7 +23,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float shootAnimDuration = 1f;
     private float currentShootTimer = 0f;
     private float _dirX;
-    private float _hurtForce = 70f;
+    public float _hurtForce = 50f;
 
 
     [SerializeField] private float moveSpeed = 7f;
@@ -36,8 +37,6 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D noFrictionMat;
     [SerializeField] private PhysicsMaterial2D frictionMat;
 
-
-
     private enum AnimationState { idle, run, jump, shoot, runshoot }
     private AnimationState state;
     
@@ -48,6 +47,7 @@ public class PlayerBehaviour : MonoBehaviour
         _anim = GetComponent<Animator>();
         _health = GetComponent<HealthSystem>();
         _firePoint = transform.Find("Fire Point");
+        _unicornFollowPoint = transform.Find("Follow Point");
         _health.onDeath.AddListener(onPlayerDeath);
     }
     void Shoot()
@@ -90,6 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _isShooting = false;
         }
+
         GroundCheck();
         UpdateAnimationState();
     }
@@ -98,13 +99,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _anim.SetFloat("speed", Mathf.Abs(_rb.velocity.x));
         _anim.SetBool("isGrounded", _isGrounded);
+
         if (_dirX > 0f)
         {
             state = AnimationState.run;
             _sprite.flipX = false;
             if (!_facingRight)
             {
-                FlipFirePoint();
+                FlipFireandFollowPoint();
             }
         }
         else if (_dirX < 0f)
@@ -113,7 +115,7 @@ public class PlayerBehaviour : MonoBehaviour
             _sprite.flipX = true;
             if (_facingRight)
             {
-                FlipFirePoint();
+                FlipFireandFollowPoint();
             }
         }
         else
@@ -145,22 +147,25 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     // function that makes the shot go right when the player faces right and go left when the player faces left
-    private void FlipFirePoint()
+    private void FlipFireandFollowPoint()
     {
         _facingRight = !_facingRight;
         float rotation = _firePoint.rotation.eulerAngles.z;
         rotation = _facingRight ? 0f : 180f;
         _firePoint.rotation = Quaternion.Euler(0, 0, rotation);
         Vector3 tempPos = _firePoint.localPosition;
+        Vector3 tempPos2 = _unicornFollowPoint.localPosition;
         tempPos.x = -tempPos.x;
+        tempPos2.x = -tempPos2.x;
         _firePoint.localPosition = tempPos;
+        _unicornFollowPoint.localPosition = tempPos2;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            _health.TakeDamage();
+            //_health.TakeDamage();
             _anim.SetTrigger("Hurt");
             StartCoroutine(InputDisable());
             Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized;
@@ -171,7 +176,7 @@ public class PlayerBehaviour : MonoBehaviour
     IEnumerator InputDisable()
     {
         _ignoreInput = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         _ignoreInput = false;
     }
     private void onPlayerDeath()

@@ -14,19 +14,18 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyDeathInstance = Instantiate(enemyDeathPrefab, transform.position, Quaternion.identity);
         _enemyDeathInstance.SetActive(false);
     }
-
-    private void OnDisable()
-    {
-        // Spawn Death Particles
-        // _enemyDeathInstance.SetActive(true);
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        // Spawn Death Particles
+        _enemyDeathInstance.SetActive(true);
     }
 
     /*
