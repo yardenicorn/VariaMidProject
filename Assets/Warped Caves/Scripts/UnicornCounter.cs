@@ -22,12 +22,10 @@ public class UnicornCounter : MonoBehaviour
         if (collision.gameObject.CompareTag("Unicorn"))
         {
             counter++;
-            Debug.Log("Unicorn collected: " + counter);
             if (counter == 5)
             {
                 youwinTextObject.SetActive(true);
                 _sparklesParticlesInstance.SetActive(true);
-                Debug.Log("You win!");
             }
         }
     }

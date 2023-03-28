@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class UnicornBehaviour : MonoBehaviour
 {
-    [SerializeField] private Transform FollowPoint;
+    [SerializeField] private Transform _followPoint;
     private SpriteRenderer _sprite;
-    private float speed = 7f;
-    private bool isFollowing = false;
-    private bool isinGarden = false;
-    private float delay = 2.0f;
-    private float timeElapsed = 0.0f;
+    private float _movespeed = 7f;
+    private bool _isFollowing = false;
+    private bool _isinGarden = false;
+    private float _delay = 2.0f;
+    private float _timeElapsed = 0.0f;
     private float _dirX;
     private Vector3 previousPosition;
     private Quaternion previousRotation;
@@ -22,20 +22,14 @@ public class UnicornBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (isFollowing)
+        if (_isFollowing)
         {
-            transform.position = Vector2.MoveTowards(transform.position, FollowPoint.position, speed * Time.deltaTime);
-            timeElapsed += Time.deltaTime;
-            if (timeElapsed >= delay)
+            transform.position = Vector2.MoveTowards(transform.position, _followPoint.position, _movespeed * Time.deltaTime);
+            _timeElapsed += Time.deltaTime;
+            if (_timeElapsed >= _delay)
             {
-                // Update the position and rotation of this GameObject
-                transform.position = FollowPoint.position;
-                //transform.rotation = FollowPoint.rotation;
-
-                // Reset the time elapsed and previous position/rotation
-                timeElapsed = 0.0f;
-                previousPosition = FollowPoint.position;
-                //previousRotation = FollowPoint.rotation;
+                _timeElapsed = 0.0f;
+                previousPosition = _followPoint.position;
             }
                 
             _dirX = Input.GetAxisRaw("Horizontal");
@@ -52,29 +46,18 @@ public class UnicornBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isinGarden)
+        if (!_isinGarden)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                isFollowing = true;
+                _isFollowing = true;
             }
         }
 
         if (collision.gameObject.CompareTag("GardenStay"))
         {
-            isFollowing = false;
-            isinGarden = true;
+            _isFollowing = false;
+            _isinGarden = true;
         }
     }
-
-    /*private void OnTargetFollow()
-    {
-        else
-        {
-            // Interpolate the position and rotation between the previous and current player positions/rotations
-            float t = timeElapsed / delay;
-            transform.position = Vector3.Lerp(previousPosition, FollowPoint.position, t);
-            transform.rotation = Quaternion.Slerp(previousRotation, FollowPoint.rotation, t);
-        }
-    }*/
 }

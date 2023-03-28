@@ -7,29 +7,28 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    private const int maxHealth = 3;
-    private int currentHealth;
-    private string currentSceneName;
-    [SerializeField] private GameObject gameoverTextObject;
-    [SerializeField] private GameObject restartTextObject;
+    private const int _maxHealth = 3;
+    private int _currentHealth;
+    private string _currentScene;
+    [SerializeField] private GameObject _gameoverTextObject;
+    [SerializeField] private GameObject _restartTextObject;
 
     public UnityEvent onDeath { get; private set; } = new UnityEvent();
-
     public Image[] hearts;
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        currentSceneName = SceneManager.GetActiveScene().name;
+        _currentHealth = _maxHealth;
+        _currentScene = SceneManager.GetActiveScene().name;
     }
 
     public void TakeDamage()
     {
-        currentHealth--;
+        _currentHealth--;
 
         UpdateHearts();
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             Death();
         }
@@ -39,7 +38,7 @@ public class HealthSystem : MonoBehaviour
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < currentHealth)
+            if (i < _currentHealth)
             {
                 hearts[i].enabled = true;
             }
@@ -53,13 +52,13 @@ public class HealthSystem : MonoBehaviour
     private void Death()
     {
         onDeath.Invoke();
-        gameoverTextObject.SetActive(true);
-        restartTextObject.SetActive(true);
+        _gameoverTextObject.SetActive(true);
+        _restartTextObject.SetActive(true);
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(currentSceneName);
+        SceneManager.LoadScene(_currentScene);
     }
 
 }

@@ -14,9 +14,9 @@ public class Bullet : MonoBehaviour
         GameObject.Destroy(gameObject, 1);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Gate"))
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Gate"))
         {
             Destroy(gameObject);
         }

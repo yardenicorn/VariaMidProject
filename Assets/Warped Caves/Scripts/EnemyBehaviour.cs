@@ -6,25 +6,19 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public GameObject enemyDeathParticlesPrefab;
     public GameObject enemyPrefab;
-    private GameObject _enemyDeathInstance;
-    // private float respawnTime = 3f;
+    private GameObject _enemyDeathParticlesPrefabInstance;
 
     private void Start()
     {
-        _enemyDeathInstance = Instantiate(enemyDeathParticlesPrefab, transform.position, Quaternion.identity);
-        _enemyDeathInstance.SetActive(false);
+        _enemyDeathParticlesPrefabInstance = Instantiate(enemyDeathParticlesPrefab, transform.position, Quaternion.identity);
+        _enemyDeathParticlesPrefabInstance.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
             gameObject.SetActive(false);
+            _enemyDeathParticlesPrefabInstance.SetActive(true);
         }
-    }
-
-    private void OnDisable()
-    {
-        // Spawn Death Particles
-        _enemyDeathInstance.SetActive(true);
     }
 }

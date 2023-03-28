@@ -9,37 +9,37 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody2D _rb;
     private SpriteRenderer _sprite;
     private Animator _anim;
+    private HealthSystem _health;
     private Transform _firePoint;
     private Transform _unicornFollowPoint;
     public GameObject bulletPrefab;
     public GameObject gate;
     public Collider2D gateColl;
-    private HealthSystem _health;
 
     private bool _facingRight = true;
     private bool _isGrounded = true;
     private bool _ignoreInput = false;
     private bool _isShooting = false;
     private bool _isDead = false;
-    [SerializeField] private float shootAnimDuration = 1f;
-    private float currentShootTimer = 0f;
+
     private float _dirX;
-    public float _hurtForce = 50f;
+    private float _hurtForce = 20f;
+    private float _moveSpeed = 7f;
+    private float _jumpForce = 15f;
+    private float _currentShootTimer = 0f;
+    private float _shootAnimationDuration = 0.5f;
 
-
-    [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float jumpForce = 14f;
     [Header("Ground Check")]
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform playerFeet;
-    [SerializeField] private float feetRadius = 0.25f;
-    [SerializeField] private int maxJumps = 2;
-    private int jumpCounter = 0;
-    [SerializeField] private PhysicsMaterial2D noFrictionMat;
-    [SerializeField] private PhysicsMaterial2D frictionMat;
+    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private Transform _playerFeet;
+    private float _feetRadius = 0.25f;
+    private int _jumpCounter = 0;
+    private int _maxJumps = 2;
+    [SerializeField] private PhysicsMaterial2D _noFrictionMat;
+    [SerializeField] private PhysicsMaterial2D _frictionMat;
 
-    private enum AnimationState { idle, run, jump, shoot, runshoot }
-    private AnimationState state;
+    private enum AnimationState { idle, run, jump, shoot, shootrun }
+    private AnimationState _state;
     
     private void Start()
     {
@@ -64,32 +64,40 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         _dirX = Input.GetAxisRaw("Horizontal");
-        _rb.velocity = new Vector2(_dirX * moveSpeed, _rb.velocity.y);
+        _rb.velocity = new Vector2(_dirX * _moveSpeed, _rb.velocity.y);
         if (_rb.velocity.x != 0)
         {
-            _rb.sharedMaterial = noFrictionMat;
+            _rb.sharedMaterial = _noFrictionMat;
         }
         else
         {
-            _rb.sharedMaterial = frictionMat;
+            _rb.sharedMaterial = _frictionMat;
         }
             
-
-        if (Input.GetKeyDown("up") && jumpCounter < maxJumps)
+        if (Input.GetKeyDown("up") && _jumpCounter < _maxJumps)
         {
-            _rb.velocity = Vector2.up * jumpForce;
-            jumpCounter++;
+            _rb.velocity = Vector2.up * _jumpForce;
+            _jumpCounter++;
         }
 
         if (Input.GetKeyDown("space"))
         {
             Shoot();
         }
-
-        currentShootTimer += Time.deltaTime;
-        if (currentShootTimer > shootAnimDuration)
+        _currentShootTimer += Time.deltaTime;
+        if (_currentShootTimer > _shootAnimationDuration)
         {
             _isShooting = false;
+        }
+
+
+
+        if (_isDead == true)
+        {
+            if (Input.anyKey)
+            {
+                _health.RestartGame();
+            }
         }
 
         GroundCheck();
@@ -98,12 +106,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void UpdateAnimationState()
     {
+        _anim.SetInteger("state", (int)_state);
         _anim.SetFloat("speed", Mathf.Abs(_rb.velocity.x));
         _anim.SetBool("isGrounded", _isGrounded);
+        _anim.SetBool("isShooting", _isShooting);
 
         if (_dirX > 0f)
         {
-            state = AnimationState.run;
+            _state = AnimationState.run;
             _sprite.flipX = false;
             if (!_facingRight)
             {
@@ -112,7 +122,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (_dirX < 0f)
         {
-            state = AnimationState.run;
+            _state = AnimationState.run;
             _sprite.flipX = true;
             if (_facingRight)
             {
@@ -121,35 +131,25 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
-            state = AnimationState.idle;
+            _state = AnimationState.idle;
         }
 
         if (_isGrounded)
         {
-            state = AnimationState.jump;
+            _state = AnimationState.jump;
         }
 
         if (Input.GetKeyDown("space"))
         {
             _isShooting = true;
-            currentShootTimer = 0f;
+            _currentShootTimer = 0f;
             if (_dirX != 0f)
             {
-                state = AnimationState.runshoot;
+                _state = AnimationState.shootrun;
             }
             else
             {
-                state = AnimationState.shoot;
-            }
-        }
-        _anim.SetBool("isShooting", _isShooting);
-        _anim.SetInteger("state", (int)state);
-
-        if (_isDead == true)
-        {
-            if (Input.GetKey(KeyCode.Return))
-            {
-                _health.RestartGame();
+                _state = AnimationState.shoot;
             }
         }
     }
@@ -173,7 +173,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            //_health.TakeDamage();
+            _health.TakeDamage();
             _anim.SetTrigger("Hurt");
             StartCoroutine(InputDisable());
             Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized + Vector2.up;
@@ -184,7 +184,7 @@ public class PlayerBehaviour : MonoBehaviour
     IEnumerator InputDisable()
     {
         _ignoreInput = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         _ignoreInput = false;
     }
     private void onPlayerDeath()
@@ -208,10 +208,10 @@ public class PlayerBehaviour : MonoBehaviour
     private void GroundCheck()
     {
         bool lastGroundState = _isGrounded;
-        _isGrounded = Physics2D.OverlapCircle(playerFeet.position, feetRadius, groundLayer);
+        _isGrounded = Physics2D.OverlapCircle(_playerFeet.position, _feetRadius, _groundLayer);
         if (lastGroundState == false && _isGrounded == true)
         {
-            jumpCounter = 0;
+            _jumpCounter = 0;
         }
     }
 }
