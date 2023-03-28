@@ -20,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _isGrounded = true;
     private bool _ignoreInput = false;
     private bool _isShooting = false;
+    private bool _isDead = false;
     [SerializeField] private float shootAnimDuration = 1f;
     private float currentShootTimer = 0f;
     private float _dirX;
@@ -128,7 +129,6 @@ public class PlayerBehaviour : MonoBehaviour
             state = AnimationState.jump;
         }
 
-
         if (Input.GetKeyDown("space"))
         {
             _isShooting = true;
@@ -144,6 +144,14 @@ public class PlayerBehaviour : MonoBehaviour
         }
         _anim.SetBool("isShooting", _isShooting);
         _anim.SetInteger("state", (int)state);
+
+        if (_isDead == true)
+        {
+            if (Input.GetKey(KeyCode.Return))
+            {
+                _health.RestartGame();
+            }
+        }
     }
 
     // function that makes the shot go right when the player faces right and go left when the player faces left
@@ -168,7 +176,7 @@ public class PlayerBehaviour : MonoBehaviour
             //_health.TakeDamage();
             _anim.SetTrigger("Hurt");
             StartCoroutine(InputDisable());
-            Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized;
+            Vector2 direction = (Vector2)(transform.position - collision.transform.position).normalized + Vector2.up;
             _rb.AddForce(direction * _hurtForce, ForceMode2D.Impulse);
         }
     }
@@ -176,12 +184,13 @@ public class PlayerBehaviour : MonoBehaviour
     IEnumerator InputDisable()
     {
         _ignoreInput = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         _ignoreInput = false;
     }
     private void onPlayerDeath()
     {
         _anim.SetTrigger("Dead");
+        _isDead = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

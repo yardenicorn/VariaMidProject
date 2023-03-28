@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public const int maxHealth = 3;
-    public int currentHealth;
-    public GameObject gameoverTextObject;
+    private const int maxHealth = 3;
+    private int currentHealth;
+    private string currentSceneName;
+    [SerializeField] private GameObject gameoverTextObject;
+    [SerializeField] private GameObject restartTextObject;
+
     public UnityEvent onDeath { get; private set; } = new UnityEvent();
 
     public Image[] hearts;
@@ -16,6 +20,7 @@ public class HealthSystem : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
 
     public void TakeDamage()
@@ -26,7 +31,7 @@ public class HealthSystem : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            Death();
         }
     }
 
@@ -45,9 +50,16 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    private void Die()
+    private void Death()
     {
         onDeath.Invoke();
         gameoverTextObject.SetActive(true);
+        restartTextObject.SetActive(true);
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(currentSceneName);
+    }
+
 }

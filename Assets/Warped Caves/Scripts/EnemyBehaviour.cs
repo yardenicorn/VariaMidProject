@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public GameObject enemyDeathPrefab;
+    public GameObject enemyDeathParticlesPrefab;
     public GameObject enemyPrefab;
     private GameObject _enemyDeathInstance;
     // private float respawnTime = 3f;
 
     private void Start()
     {
-        _enemyDeathInstance = Instantiate(enemyDeathPrefab, transform.position, Quaternion.identity);
+        _enemyDeathInstance = Instantiate(enemyDeathParticlesPrefab, transform.position, Quaternion.identity);
         _enemyDeathInstance.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,12 +27,4 @@ public class EnemyBehaviour : MonoBehaviour
         // Spawn Death Particles
         _enemyDeathInstance.SetActive(true);
     }
-
-    /*
-    private void RespawnEnemy()
-    {
-        Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
-    }
-    */
-
 }
