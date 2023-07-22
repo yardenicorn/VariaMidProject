@@ -90,8 +90,6 @@ public class PlayerBehaviour : MonoBehaviour
             _isShooting = false;
         }
 
-
-
         if (_isDead == true)
         {
             if (Input.anyKey)
@@ -99,7 +97,6 @@ public class PlayerBehaviour : MonoBehaviour
                 _health.RestartGame();
             }
         }
-
         GroundCheck();
         UpdateAnimationState();
     }
